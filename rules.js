@@ -3819,13 +3819,14 @@ states.papal_legate_active = {
 		for (let lord = first_friendly_lord; lord <= last_friendly_lord; ++lord) {
 			// Seat of a Ready Lord without rolling
 			if (is_lord_ready(lord)) {
-				if (is_lord_seat(lord, here))
+				if (is_lord_seat(lord, here) && is_friendly_locale(here))
 					if (!no_muster_of_or_by_lord(lord))
 						gen_action_lord(lord)
 			}
 
 			// Seat of a Lord on the Calendar
 			else if (is_lord_on_calendar(lord)) {
+				// allow shifting even if not at a friendly locale
 				if (is_lord_seat(lord, here))
 					gen_action_lord(lord)
 			}
