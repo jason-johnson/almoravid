@@ -9109,7 +9109,7 @@ function remove_serf(lord) {
 }
 
 function use_warrior_monks(lord, type) {
-	if (type === KNIGHTS) {
+	if (type === KNIGHTS && lord !== GARRISON) {
 		let bit = 1 << lord
 		if (game.battle.warrior_monks & bit) {
 			game.battle.warrior_monks ^= bit
