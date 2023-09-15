@@ -8332,8 +8332,20 @@ function flanks_all_positions(S, TT) {
 	return true
 }
 
+function has_strike_within_group(S) {
+	if (has_strike(S))
+		return true
+	if (game.battle.strikers) {
+		if (game.battle.strikers.includes(S))
+			for (let X of game.battle.strikers)
+				if (has_strike(X))
+					return true
+	}
+	return false
+}
+
 function strike_left_or_right(S2, T1, T2, T3) {
-	if (has_strike(S2)) {
+	if (has_strike_within_group(S2)) {
 		if (filled(T2))
 			return T2
 		let has_t1 = filled(T1)
